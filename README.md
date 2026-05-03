@@ -14,7 +14,7 @@ An AI-powered web application that acts as your personal Chief Financial Officer
 ![App Input](ReceiptSwiss.jpg)
 
 **The structured output:**
-![App Output](output.png)
+![App Output](<img width="273" height="422" alt="Image" src="https://github.com/user-attachments/assets/02fd63d2-ed4c-4add-ba88-13dacc62c05c" />)
 
 ##  Tech Stack
 * **Frontend:** Streamlit
