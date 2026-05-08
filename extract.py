@@ -1,13 +1,39 @@
+# import os
+# import base64
+# from groq import Groq
+# import pytesseract
+# from PIL import Image
+# import json
+# from dotenv import load_dotenv
+
 import os
-from groq import Groq
-import pytesseract
-from PIL import Image
+import base64
 import json
+from groq import Groq
+from dotenv import load_dotenv
 
 # --- CONFIGURATION ---
+# 1. Figure out EXACTLY where we are on the computer
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+
+# 2. Force it to load that exact file
+loaded_successfully = load_dotenv(ENV_PATH, override=True)
+
+# 3. Print out what happened to the terminal so we can see it!
+print("\n--- SECRETS DEBUG MODE ---")
+print(f"Looking for .env at: {ENV_PATH}")
+print(f"Did it find the .env file? {loaded_successfully}")
+
+
 
 # 1. PASTE  GROQ KEY HERE
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if GROQ_API_KEY:
+    print(f"Did it find the Groq Key? YES (Length: {len(GROQ_API_KEY)})")
+else:
+    print("Did it find the Groq Key? NO - It is returning None")
+print("--------------------------\n")
 
 # 2. Get the TESSERACT PATH 
 path_to_tesseract = os.getenv("TESSERACT_PATH")
@@ -20,7 +46,7 @@ pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 client = Groq(api_key=GROQ_API_KEY)
 
 def process_receipt(image_path):
-    print(f"👀 Reading {image_path}...")
+    print(f" Reading {image_path}...")
     
     # Step A: Get Raw Text (The Eyes)
     try:
